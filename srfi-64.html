@@ -507,7 +507,7 @@ as a macro or function
 that uses a fluid or thread-local variable, or a plain global variable.</p>
 <p>
 <code>(<b>test-runner-get</b>)</code><br />
-Same as <code>(test-runner-current)</code>, buth trows an exception
+Same as <code>(test-runner-current)</code>, buth throws an exception
 if there is no current test-runner.</p>
 <p>
 <code>(<b>test-runner-simple</b>)</code><br />
@@ -617,7 +617,7 @@ It is unspecified if the result shares state with the test-runner.
 The result should not be modified, on the other hand the result
 may be implicitly modified by future <code>test-result-set!</code> or
 <code>test-result-remove</code> calls.
-However, A <code>test-result-clear</code> does not modify the returned
+However, a <code>test-result-clear</code> does not modify the returned
 alist.  Thus you can <q>archive</q> result objects from previous runs.</p>
 
 <h3>Standard result properties</h3>
@@ -712,7 +712,7 @@ is called) if an <var>expected-count</var> was specified by the matching
 <code>test-begin</code> and the <var>expected-count</var> does not match
 the <var>actual-count</var> of tests actually executed or skipped.</p>
 <p>
-<code>(<b>test-runner-on-base-end-name</b> <var>runner</var>)</code><br />
+<code>(<b>test-runner-on-bad-end-name</b> <var>runner</var>)</code><br />
 <code>(<b>test-runner-on-bad-end-name!</b> <var>runner</var> <var>on-bad-end-name-function</var>)</code><br />
 <code>(<var>on-bad-end-name-function</var> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br  />
 Called from <code>test-end</code> (before the <var>on-group-end-function</var>
@@ -739,7 +739,7 @@ uses the following call-back functions:<br />
 <code>(<b>test-on-group-end-simple</b> <var>runner</var>)</code><br />
 <code>(<b>test-on-bad-count-simple</b> <var>runner</var> <var>actual-count</var> <var>expected-count</var>)</code><br  />
 <code>(<b>test-on-bad-end-name-simple</b> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br  />
-You can call those if you want to write a your own test-runner.</p>
+You can call those if you want to write your own test-runner.</p>
 
 <h3>Test-runner components</h3>
 <p>
@@ -797,9 +797,9 @@ it as the default test runner.</p>
 	(port (open-output-file filename))
         (num-passed 0)
         (num-failed 0))
-    (test-runner-on-test! runner
-      (lambda (runner result)
-        (case (cdr (assq 'result-kind result))
+    (test-runner-on-test-end! runner
+      (lambda (runner)
+        (case (test-result-kind runner)
           ((pass xpass) (set! num-passed (+ num-passed 1)))
           ((fail xfail) (set! num-failed (+ num-failed 1)))
           (else #t))))
@@ -866,7 +866,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <p>
 <!-- Created: Sat Sep  4 12:26:07 PDT 2004 -->
 <!-- hhmts start -->
-Last modified: Sun Jan 28 13:40:18 MET 2007
+Last modified: Thu Mar 31 19:49:52 MST 2011
 <!-- hhmts end -->
 </p>
   </body>
