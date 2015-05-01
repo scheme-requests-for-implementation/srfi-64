@@ -26,13 +26,13 @@ A Scheme API for test suites
 
 This SRFI is currently in ``final'' status. To see an explanation of each
 status that a SRFI can hold, see
-<a href="http://srfi.schemers.org/srfi-process.html">here</a>.
+<a href="http://srfi.speechcode.com/srfi-process.html">here</a>.
 It will remain in draft status until 2005/03/17, or as amended. To
 provide input on this SRFI, please <code>
 <a href="mailto:srfi minus 64 at srfi dot schemers dot org">mailto:srfi minus 64 at srfi dot schemers dot org</a></code>.
-See <a href="http://srfi.schemers.org/srfi-list-subscribe.html">instructions
+See <a href="http://srfi.speechcode.com/srfi-list-subscribe.html">instructions
 here</a> to subscribe to the list. You can access previous messages via
-<a href="http://srfi.schemers.org/srfi-64/mail-archive/maillist.html">the
+<a href="http://srfi.speechcode.com/srfi-64/mail-archive/maillist.html">the
 archive of the mailing list</a>.
 <p>
 <ul>
@@ -216,9 +216,9 @@ This specification leaves it implementation-defined (or for a future
 specification) what form <code><var>test-error</var></code> may take,
 though all implementations must allow <code>#t</code>.
 Some implementations may support
-<a href="http://srfi.schemers.org/srfi-35/srfi-35.html">SRFI-35's conditions</a>,
+<a href="http://srfi.speechcode.com/srfi-35/srfi-35.html">SRFI-35's conditions</a>,
 but these are only standardized for 
-<a href="http://srfi.schemers.org/srfi-36/srfi-36.html">SRFI-36's I/O conditions</a>, which are seldom useful in test suites.
+<a href="http://srfi.speechcode.com/srfi-36/srfi-36.html">SRFI-36's I/O conditions</a>, which are seldom useful in test suites.
 An implementation may also allow implementation-specific
 <q>exception types</q>.
 For example Java-based implementations may allow
@@ -500,7 +500,7 @@ True iff <code><var>value</var></code> is a test-runner object.</p>
 <code>(<b>test-runner-current</b> <var>runner</var>)</code><br />
 Get or set the current test-runner.
 If an implementation supports parameter objects
-(as in <a href="http://srfi.schemers.org/srfi-39/srfi-39.html">SRFI-39</a>),
+(as in <a href="http://srfi.speechcode.com/srfi-39/srfi-39.html">SRFI-39</a>),
 then <code>test-runner-current</code> can be a parameter object.
 Alternatively, <code>test-runner-current</code> may be implemented
 as a macro or function 
@@ -817,7 +817,7 @@ it as the default test runner.</p>
 <h1>Implementation</h1>
 <p>
 The test implementation uses <code>cond-expand</code>
-(<a href="http://srfi.schemers.org/srfi-0/srfi-0.html">SRFI-0</a>)
+(<a href="http://srfi.speechcode.com/srfi-0/srfi-0.html">SRFI-0</a>)
 to select different code depending on certain SRFI names (<code>srfi-9</code>,
 <code>srfi-34</code>, <code>srfi-35</code>, <code>srfi-39</code>),
 or implementations (<code>kawa</code>).
@@ -828,8 +828,8 @@ It should otherwise be portable to any R5RS implementation.</p>
 <h2>Examples</h2>
 <p>Here is <a href="srfi-25-test.scm"><code>srfi-25-test.scm</code></a>,
 based converted from Jussi Piitulainen's
-<a href="http://srfi.schemers.org/srfi-25/test.scm"><code>test.scm</code></a>
-for <a href="http://srfi.schemers.org/srfi-25/srfi-25.html">SRFI-25</a>.</p>
+<a href="http://srfi.speechcode.com/srfi-25/test.scm"><code>test.scm</code></a>
+for <a href="http://srfi.speechcode.com/srfi-25/srfi-25.html">SRFI-25</a>.</p>
 
 <h2>Test suite</h2>
 <p>
