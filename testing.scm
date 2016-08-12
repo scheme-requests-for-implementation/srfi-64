@@ -46,7 +46,7 @@
   (provide 'testing)
   (require 'srfi-34)
   (require 'srfi-35))
- (else ()
+ (else
   ))
 
 (cond-expand
