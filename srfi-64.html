@@ -350,11 +350,12 @@ one of a <code><var>decl-or-expr</var></code> forms raises an exception
 (assuming the implementation has a way to catch exceptions).</p>
 <p>For example:</p>
 <pre>
-(test-group-with-cleanup "test-file"
-  (define f (open-output-file "log"))
-  (do-a-bunch-of-tests f)
-  (close-output-port f))
+(let ((f (open-output-file "log")))
+  (test-group-with-cleanup "test-file"
+    (do-a-bunch-of-tests f)
+    (close-output-port f)))
 </pre>
+<p><b>Erratum note:</b> <a href="https://github.com/scheme-requests-for-implementation/srfi-64/blob/4470ffdec71b1cf61633b664958a3ce5e6997710/srfi-64.html">Earlier versions</a> had a non-working example.
 
 <!--
 <h2>Test suites</h2>
