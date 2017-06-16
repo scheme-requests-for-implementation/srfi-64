@@ -47,6 +47,9 @@
   (provide 'srfi-64)
   (provide 'testing)
   (require 'srfi-35))
+ (gauche
+  (define-module srfi-64)
+  (select-module srfi-64))
  (else
   ))
 
@@ -62,6 +65,8 @@
     (syntax-rules ()
       ((%test-export test-begin . other-names)
        (module-export %test-begin test-begin . other-names)))))
+ (gauche
+  (define-syntax %test-export export))
  (else
   (define-syntax %test-export
     (syntax-rules ()
@@ -1030,6 +1035,7 @@
     (if (eof-object? (read-char port))
 	(cond-expand
 	 (guile (eval form (current-module)))
+         (gauche (eval form ((with-module gauche.internal vm-current-module))))
 	 (else (eval form)))
 	(cond-expand
 	 (srfi-23 (error "(not at eof)"))
