@@ -921,6 +921,15 @@
          (test-result-alist! r '())
          (%test-error r #t expr)))))))
 
+(define-syntax test-with-runner
+  (syntax-rules ()
+    ((test-with-runner runner form ...)
+     (let ((saved-runner (test-runner-current)))
+       (dynamic-wind
+           (lambda () (test-runner-current runner))
+           (lambda () form ...)
+           (lambda () (test-runner-current saved-runner)))))))
+
 (define (test-apply first . rest)
   (if (test-runner? first)
       (test-with-runner first (apply test-apply rest))
@@ -939,15 +948,6 @@
 	    (let ((r (test-runner-create)))
 	      (test-with-runner r (apply test-apply first rest))
 	      ((test-runner-on-final r) r))))))
-
-(define-syntax test-with-runner
-  (syntax-rules ()
-    ((test-with-runner runner form ...)
-     (let ((saved-runner (test-runner-current)))
-       (dynamic-wind
-           (lambda () (test-runner-current runner))
-           (lambda () form ...)
-           (lambda () (test-runner-current saved-runner)))))))
 
 ;;; Predicates
 
