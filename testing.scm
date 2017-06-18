@@ -47,6 +47,9 @@
   (provide 'srfi-64)
   (provide 'testing)
   (require 'srfi-35))
+ (gauche
+  (define-module srfi-64)
+  (select-module srfi-64))
  (else
   ))
 
@@ -62,6 +65,8 @@
     (syntax-rules ()
       ((%test-export test-begin . other-names)
        (module-export %test-begin test-begin . other-names)))))
+ (gauche
+  (define-syntax %test-export export))
  (else
   (define-syntax %test-export
     (syntax-rules ()
@@ -921,6 +926,15 @@
          (test-result-alist! r '())
          (%test-error r #t expr)))))))
 
+(define-syntax test-with-runner
+  (syntax-rules ()
+    ((test-with-runner runner form ...)
+     (let ((saved-runner (test-runner-current)))
+       (dynamic-wind
+           (lambda () (test-runner-current runner))
+           (lambda () form ...)
+           (lambda () (test-runner-current saved-runner)))))))
+
 (define (test-apply first . rest)
   (if (test-runner? first)
       (test-with-runner first (apply test-apply rest))
@@ -939,15 +953,6 @@
 	    (let ((r (test-runner-create)))
 	      (test-with-runner r (apply test-apply first rest))
 	      ((test-runner-on-final r) r))))))
-
-(define-syntax test-with-runner
-  (syntax-rules ()
-    ((test-with-runner runner form ...)
-     (let ((saved-runner (test-runner-current)))
-       (dynamic-wind
-           (lambda () (test-runner-current runner))
-           (lambda () form ...)
-           (lambda () (test-runner-current saved-runner)))))))
 
 ;;; Predicates
 
@@ -1030,6 +1035,7 @@
     (if (eof-object? (read-char port))
 	(cond-expand
 	 (guile (eval form (current-module)))
+         (gauche (eval form ((with-module gauche.internal vm-current-module))))
 	 (else (eval form)))
 	(cond-expand
 	 (srfi-23 (error "(not at eof)"))
