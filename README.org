@@ -2,13 +2,13 @@
 
 ** by Per Bothner
 
-This repository hosts [[http://srfi.schemers.org/srfi-64/][SRFI 64]]: A Scheme API for test suites, a [[http://srfi.schemers.org/][Scheme Request for Implementation]].
+This repository hosts [[https://srfi.schemers.org/srfi-64/][SRFI 64]]: A Scheme API for test suites, a [[https://srfi.schemers.org/][Scheme Request for Implementation]].
 
 This SRFI is in /final/ status.
 
-The full documentation for this SRFI can be found in the [[http://srfi.schemers.org/srfi-64/srfi-64.html][SRFI Document]].
+The full documentation for this SRFI can be found in the [[https://srfi.schemers.org/srfi-64/srfi-64.html][SRFI Document]].
 
-If you'd like to participate in the discussion of this SRFI, or report issues with it, please [[http://srfi.schemers.org/srfi-64/][join the SRFI-64 mailing list]] and send your message there.
+If you'd like to participate in the discussion of this SRFI, or report issues with it, please [[shttp://srfi.schemers.org/srfi-64/][join the SRFI-64 mailing list]] and send your message there.
 
 Thank you.
 
