@@ -318,9 +318,30 @@
 	(display "%%%% Starting test ")
 	(display suite-name)
 	(if test-log-to-file
-	    (let* ((log-file-name
-		    (if (string? test-log-to-file) test-log-to-file
-			(string-append suite-name ".log")))
+	    (let* ((log-name (if (string? test-log-to-file) test-log-to-file
+                                 (string-append suite-name ".log")))
+                   ;; Replace "bad" characters in log file name with #\_
+                   (fix-invalid-char
+                    (lambda (ch)
+                      (if (or (char-alphabetic? ch)
+                              (char-numeric? ch)
+                              (char=? ch #\Space)
+                              (char=? ch #\-)
+                              (char=? ch #\+)
+                              (char=? ch #\_)
+                              (char=? ch #\.)
+                              (char=? ch #\,))
+                          ch
+                          #\_)))
+                   (log-file-name
+                    (cond-expand (r7rs
+                                  (string-map fix-invalid-char log-name))
+                                 (else
+                                  (let ((t (string-copy log-name))
+                                        (tlen (string-length log-name)))
+                                    (do ((i 0 (+ i 1))) ((>= i tlen) t)
+                                      (string-set! t i (fix-invalid-char
+                                                        (string-ref t i))))))))
 		   (log-file
 		    (cond-expand (mzscheme
 				  (open-output-file log-file-name 'truncate/replace))
