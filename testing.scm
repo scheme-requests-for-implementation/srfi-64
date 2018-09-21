@@ -464,8 +464,9 @@
       (%test-runner-fail-list! r (car (%test-runner-fail-save r)))
       (%test-runner-fail-save! r (cdr (%test-runner-fail-save r)))
       (%test-runner-count-list! r (cdr count-list))
-      (if (null? (test-runner-group-stack r))
-	  ((test-runner-on-final r) r)))))
+      (cond ((null? (test-runner-group-stack r))
+             ((test-runner-on-final r) r)
+             (test-runner-current #f))))))
 
 (define-syntax test-group
   (syntax-rules ()

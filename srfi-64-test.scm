@@ -483,6 +483,7 @@
  '(("x" "x") ("y") () () ("y") (2 1 0 0 1))
  (triv-runner
   (lambda ()
+    (test-begin "a then b")
     (test-begin "a")
     (test-skip "y")
     (test-assert "x" #t)      ; PASS
@@ -491,6 +492,7 @@
     (test-begin "b")
     (test-assert "x" #t)      ; PASS
     (test-assert "y" #f)      ; FAIL
+    (test-end)
     (test-end))))
 
 (test-equal
@@ -498,6 +500,7 @@
  '(("x" "x") () () () ("y" "y") (2 0 0 0 2))
  (triv-runner
   (lambda ()
+    (test-begin "a then b")
     (test-skip "y")
     (test-begin "a")
     (test-assert "x" #t)      ; PASS
@@ -506,6 +509,7 @@
     (test-begin "b")
     (test-assert "x" #t)      ; PASS
     (test-assert "y" #f)      ; SKIP
+    (test-end)
     (test-end))))
 
 (test-end);6.3
@@ -807,8 +811,8 @@
                (test-assert "x" #t)
                (test-begin "a")
                (test-assert #t)
-               (test-end)
-               (test-assert "y" #f))))
+               (test-assert "y" #f)
+               (test-end))))
 
 (test-end) ; 8.8
 
