@@ -1,0 +1,2 @@
+This directory contains an implementation of SRFI 64 provided by
+Taylan Kammer.

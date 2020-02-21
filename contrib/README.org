@@ -1,0 +1,2 @@
+This directory contains implementations of SRFI 64 provided by people
+other than Per Bothner, the author of the SRFI.
