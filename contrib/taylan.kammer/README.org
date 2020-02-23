@@ -1,2 +1,7 @@
 This directory contains an implementation of SRFI 64 provided by
 Taylan Kammer.
+
+There are some differences between Per's sample implementation and
+Taylan's implementation.  Rather than describing them here, I refer
+readers to the [[https://srfi-email.schemers.org/srfi-64/msg/13288855/][email discussion]] about the new implementation.  Both
+Per and Taylan contributed.

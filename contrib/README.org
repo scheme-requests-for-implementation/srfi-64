@@ -1,15 +1,2 @@
 This directory contains implementations of SRFI 64 provided by people
 other than Per Bothner, the author of the SRFI.
-
-There are some differences between Per's sample implementation and
-Taylan's implementation:
-
-Per describes one advantage of his sample implementation:
-
-#+BEGIN_QUOTE
-One advantage of the reference implementation is that it has hooks for
-reporting line numbers for failing tests.  That seems impossibly to do
-portably, and difficult to do without some kind of macro hooks.
-#+END_QUOTE
-
-Taylan's implementation is mostly pure R7RS.
