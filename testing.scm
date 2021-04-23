@@ -298,7 +298,11 @@
 
 (define (%test-begin suite-name count)
   (if (not (test-runner-current))
-      (test-runner-current (test-runner-create)))
+      (let ((r (test-runner-create)))
+	(test-runner-current r)
+	(test-runner-on-final! r
+	  (let ((old-final (test-runner-on-final r)))
+	    (lambda (r) (old-final r) (test-runner-current #f))))))
   (let ((runner (test-runner-current)))
     ((test-runner-on-group-begin runner) runner suite-name count)
     (%test-runner-skip-save! runner
@@ -464,9 +468,8 @@
       (%test-runner-fail-list! r (car (%test-runner-fail-save r)))
       (%test-runner-fail-save! r (cdr (%test-runner-fail-save r)))
       (%test-runner-count-list! r (cdr count-list))
-      (cond ((null? (test-runner-group-stack r))
-             ((test-runner-on-final r) r)
-             (test-runner-current #f))))))
+      (if (null? (test-runner-group-stack r))
+	  ((test-runner-on-final r) r)))))
 
 (define-syntax test-group
   (syntax-rules ()
