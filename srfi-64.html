@@ -1,31 +1,24 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="en">
   <head>
     <title>SRFI 64: A Scheme API for test suites</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/srfi.css" type="text/css" />
+    <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
 <style type="text/css">
-  div.title h1 { font-size: small; color: blue }
-  div.title { font-size: xx-large; color: blue; font-weight: bold }
-  h1 { font-size: x-large; color: blue }
-  h2 { font-size: large; color: blue }
   /* So var inside pre gets same font as var in paragraphs. */
   var { font-family: monospace; }
 </style>
   </head>
 
 <body>
-<div class="title">
-<H1>Title</H1>
-A Scheme API for test suites
-</div>
+<h1><a href="https://srfi.schemers.org/"><img class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" alt="SRFI surfboard logo" /></a>64: A Scheme API for test suites</h1>
 
-<H1>Author</H1>
-<p>Per Bothner
+<p>by Per Bothner<br />
 <code><a href="mailto:per@bothner.com">&lt;per@bothner.com&gt;</a></code></p>
 
-<H1>Status</H1>
+<h2>Status</h2>
 
 <p>This SRFI is currently in <em>final</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+64  +at+srfi+dotschemers+dot+org">srfi-64  @<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-64  ">archive</a>.</p>
 <ul>
@@ -39,7 +32,7 @@ A Scheme API for test suites
 </p>
 
 
-<H1>Abstract</H1>
+<h2>Abstract</h2>
 <p>
 This defines an API for writing <dfn>test suites</dfn>, to make it easy
 to portably test Scheme APIs, libraries, applications, and implementations.
@@ -48,7 +41,7 @@ in the context of a <dfn>test-runner</dfn>.  This specifications
 also supports writing new test-runners, to allow customization
 of reporting and processing the result of running test suites.</p>
 
-<h1>Rationale</h1>
+<h2>Rationale</h2>
 
 <p>The Scheme community needs a standard for writing test suites.
 Every SRFI or other library should come with a test suite.
@@ -87,14 +80,14 @@ as functions or macros or built-ins.  The reason for specifying them as
 syntax is to allow specific tests to be skipped without evaluating sub-expressions, or for implementations
 to add features such as printing line numbers or catching exceptions.</p>
 
-<h1>Specification</h1>
+<h2>Specification</h2>
 
 <p>While this is a moderately complex specification,
 you should be able to write simple test suites after just reading the
 first few sections below.  More advanced functionality, such
 as writing a custom test-runner, is at the end of the specification.</p>
 
-<h2>Writing basic test suites</h2>
+<h3>Writing basic test suites</h3>
 <p>Let's start with a simple example.
 This is a complete self-contained test-suite.</p>
 
@@ -129,7 +122,7 @@ tests to be executed using an implementation-specified default test runner,
 and <code>test-end</code> will cause a summary to be displayed
 in an implementation-specified manner.</p>
 
-<h3>Simple test-cases</h3>
+<h4>Simple test-cases</h4>
 <p>
 Primitive test cases test that a given condition is true.
 They may have a name.
@@ -188,7 +181,7 @@ This is equivalent to (except that each argument is only evaluated once):</p>
        (&lt;= test-expr (+ expected error))))
 </pre>
 
-<h3>Tests for catching errors</h3>
+<h4>Tests for catching errors</h4>
 <p>
 We need a way to specify that evaluation <em>should</em> fail.
 This verifies that errors are detected when required.</p>
@@ -225,7 +218,7 @@ the names of Java exception classes:</p>
 An implementation that cannot catch exceptions should skip
 <code>test-error</code> forms.</p>
 
-<h3>Testing syntax</h3>
+<h4>Testing syntax</h4>
 <p>
 Testing syntax is tricky, especially if we want to
 check that invalid syntax is causes an error.
@@ -260,7 +253,7 @@ The <code>test-read-eval-string</code> used in tests:</p>
 (test-equal '(x z) (test-read-string "(list 'x #;'y 'z)"))
 </pre>
 
-<h3>Test groups and paths</h3>
+<h4>Test groups and paths</h4>
 <p>A <dfn>test group</dfn> is a named sequence of forms containing testcases,
 expressions, and definitions.
 Entering a group sets the <dfn>test group name</dfn>; leaving a
@@ -329,7 +322,7 @@ within the named test group.  However, the entire group is skipped
 if it matched an active <code>test-skip</code> (see later).
 Also, the <code>test-end</code> is executed in case of an exception.</p>
 
-<h3>Handling set-up and cleanup</h3>
+<h4>Handling set-up and cleanup</h4>
 <pre>
 (<b>test-group-with-cleanup</b> <var>suite-name</var>
   <var>decl-or-expr</var> ...
@@ -352,7 +345,7 @@ one of a <code><var>decl-or-expr</var></code> forms raises an exception
 <p><b>Erratum note:</b> <a href="https://github.com/scheme-requests-for-implementation/srfi-64/blob/4470ffdec71b1cf61633b664958a3ce5e6997710/srfi-64.html">Earlier versions</a> had a non-working example.
 
 <!--
-<h2>Test suites</h2>
+<h3>Test suites</h3>
 <p>
 <i>(Not sure how useful this is, given <code>test-group</code>).</i>
 <p>A <dfn>test suite</dfn> is a test group that can (and must) be
@@ -374,12 +367,12 @@ You can run previously registered test suite:
 </pre>
 -->
 
-<h2>Conditonal test-suites and other advanced features</h2>
+<h3>Conditonal test-suites and other advanced features</h3>
 <p>
 The following describes features for controlling which tests to execute,
 or specifing that some tests are <em>expected</em> to fail.</p>
 
-<h3>Test specifiers</h3>
+<h4>Test specifiers</h4>
 <p>Sometimes we want to only run certain tests, or we know that
 certain tests are expected to fail.
 A <dfn>test specifier</dfn> is one-argument function that takes a test-runner
@@ -428,7 +421,7 @@ Convenience short-hand for: <code>(test-match-nth 1 <var>count</var>)</code>.</p
 <code><var>name</var> </code><i>(i.e. a string)</i><br />
 Convenience short-hand for <code>(test-match-name <var>name</var>)</code>.</p>
 
-<h3>Skipping selected tests</h3>
+<h4>Skipping selected tests</h4>
 <p>In some cases you may want to skip a test.</p>
 <pre>
 (<b>test-skip</b> <var>specifier</var>)
@@ -459,7 +452,7 @@ are removed by a following non-nested <code>test-end</code>.</p>
 (test-assert "test-a")   ;; executed
 </pre>
 
-<h3>Expected failures</h3>
+<h4>Expected failures</h4>
 <p>
 Sometimes you know a test case will fail, but you don't have time
 to or can't fix it.   Maybe a certain feature only works on certain platforms.
@@ -480,7 +473,7 @@ not test execution.  For example:</p>
 (test-eqv ...) ;; expected to pass
 </pre>
 
-<h2>Test-runner</h2>
+<h3>Test-runner</h3>
 <p>
 A <dfn>test-runner</dfn> is an object that runs a test-suite,
 and manages the state.  The test group path, and the sets skip and
@@ -528,7 +521,7 @@ but implementations may provide a way to override the default.
 As with <code>test-runner-current</code>, this may be a parameter object,
 or use a per-thread, fluid, or global variable.</p>
 
-<h3>Running specific tests with a specified runner</h3>
+<h4>Running specific tests with a specified runner</h4>
 <p>
 <code>(<b>test-apply</b> [<var>runner</var>] <var>specifier</var> ... <var>procedure</var>)</code><br />
 Calls <var>procedure</var> with no arguments using the specified
@@ -547,12 +540,12 @@ active <code>test-skip</code> specifiers.</p>
 Executes each <var>decl-or-expr</var> in order in a context
 where the current test-runner is <var>runner</var>.</p>
 
-<h2>Test results</h2>
+<h3>Test results</h3>
 <p>Running a test sets various status properties in the current test-runner.
 This can be examined by a custom test-runner,
 or (more rarely) in a test-suite.</p>
 
-<h3>Result kind</h3>
+<h4>Result kind</h4>
 <p>Running a test may yield one of the following
 status symbols:</p>
 <dl>
@@ -577,7 +570,7 @@ is one of <code>'pass</code> or <code>'xpass</code>.
 This is a convenient shorthand that might be useful
 in a test suite to only run certain tests if the previous test passed.</p>
 
-<h3>Test result properties</h3>
+<h4>Test result properties</h4>
 <p>
 A test runner also maintains a set of more detailed <q>result properties</q>
 associated with the current or most recent test.  (I.e. the properties of the
@@ -615,7 +608,7 @@ may be implicitly modified by future <code>test-result-set!</code> or
 However, a <code>test-result-clear</code> does not modify the returned
 alist.  Thus you can <q>archive</q> result objects from previous runs.</p>
 
-<h3>Standard result properties</h3>
+<h4>Standard result properties</h4>
 <p>
 The set of available result properties is implementation-specific.
 However, it is suggested that the following might be provided:</p>
@@ -644,12 +637,12 @@ specified in a <code>test-error</code>, if it meaningful and known.</dd>
 The actual error value is implementation-defined.</dd>
 </dl>
 
-<h2>Writing a new test-runner</h2>
+<h3>Writing a new test-runner</h3>
 <p>This section specifies how to write a test-runner.
 It can be ignored if you just want to write test-cases.</p>
 
 
-<h3>Call-back functions</h3>
+<h4>Call-back functions</h4>
 <p>
 These call-back functions are <q>methods</q> (in the object-oriented sense)
 of a test-runner. A method <code>test-runner-on-<var>event</var></code>
@@ -736,7 +729,7 @@ uses the following call-back functions:<br />
 <code>(<b>test-on-bad-end-name-simple</b> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br  />
 You can call those if you want to write your own test-runner.</p>
 
-<h3>Test-runner components</h3>
+<h4>Test-runner components</h4>
 <p>
 The following functions are for accessing the other components of a test-runner.
 They would normally only be used to write a new test-runner or
@@ -782,7 +775,7 @@ test-runner, but may be used by custom test-runners to store extra state.</p>
 Resets the state of the <var>runner</var> to its initial state.
 </p>
 
-<h3>Example</h3>
+<h4>Example</h4>
 <p>This is an example of a simple custom test-runner.
 Loading this program before running a test-suite will install
 it as the default test runner.</p>
@@ -809,7 +802,7 @@ it as the default test runner.</p>
  (lambda () (my-simple-runner "/tmp/my-test.log")))
 </pre>
 
-<h1>Implementation</h1>
+<h2>Implementation</h2>
 <p>
 The test implementation uses <code>cond-expand</code>
 (<a href="https://srfi.schemers.org/srfi-0/srfi-0.html">SRFI-0</a>)
@@ -820,20 +813,20 @@ It should otherwise be portable to any R5RS implementation.</p>
 
 <p><a href="testing.scm">testing.scm</a></p>
 
-<h2>Examples</h2>
+<h3>Examples</h3>
 <p>Here is <a href="srfi-25-test.scm"><code>srfi-25-test.scm</code></a>,
 based converted from Jussi Piitulainen's
 <a href="https://srfi.schemers.org/srfi-25/test.scm"><code>test.scm</code></a>
 for <a href="https://srfi.schemers.org/srfi-25/srfi-25.html">SRFI-25</a>.</p>
 
-<h2>Test suite</h2>
+<h3>Test suite</h3>
 <p>
 Of course we need a test suite for the testing framework itself.
 This suite <code><a href="srfi-64-test.scm">srfi-64-test.scm</a></code>
 was contributed by Donovan Kolbly
 <a href="mailto:donovan@rscheme.org"><code>&lt;donovan@rscheme.org&gt;</code></a>.</p>
 
-<h1>Copyright</h1>
+<h2>Copyright</h2>
 <p>
 Copyright (C) Per Bothner (2005, 2006)</p>
 <p>
