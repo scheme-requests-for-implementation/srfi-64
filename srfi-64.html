@@ -1,11 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
     <title>SRFI 64: A Scheme API for test suites</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
-    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png" />
 <style type="text/css">
   /* So var inside pre gets same font as var in paragraphs. */
   var { font-family: monospace; }
@@ -25,11 +25,11 @@
   <li>Received: 2005-01-07</li>
   <li>Draft: 2005-01-28--2005-03-28</li>
   <li>Revised: <a href="https://srfi.schemers.org/srfi-64/srfi-64-1.3.html">2005-10-18</a>  
-  <li>Revised: <a href="https://srfi.schemers.org/srfi-64/srfi-64-1.5.html">2006-02-24</a>  
-  <li>Final: <a href="https://srfi.schemers.org/srfi-64/srfi-64-1.6.html">2006-06-18</a></li>
+  </li><li>Revised: <a href="https://srfi.schemers.org/srfi-64/srfi-64-1.5.html">2006-02-24</a>  
+  </li><li>Final: <a href="https://srfi.schemers.org/srfi-64/srfi-64-1.6.html">2006-06-18</a></li>
   <li>Revised to fix errata: 2016-08-11</li>
 </ul>
-</p>
+
 
 
 <h2>Abstract</h2>
@@ -343,7 +343,7 @@ one of a <code><var>decl-or-expr</var></code> forms raises an exception
     (close-output-port f)))
 </pre>
 <p><b>Erratum note:</b> <a href="https://github.com/scheme-requests-for-implementation/srfi-64/blob/4470ffdec71b1cf61633b664958a3ce5e6997710/srfi-64.html">Earlier versions</a> had a non-working example.
-
+</p>
 <!--
 <h3>Test suites</h3>
 <p>
@@ -393,7 +393,7 @@ The resulting specifier matches if the current test name (as
 returned by <code>test-runner-test-name</code>) is <code>equals?</code> to
 <var>name</var>.</p>
 <p>
-<code>(<b>test-match-nth</b> <var>n</var> [<var>count</var>])</code><br/>
+<code>(<b>test-match-nth</b> <var>n</var> [<var>count</var>])</code><br />
 This evaluates to a <em>stateful</em> predicate: A counter keeps track of
 how many times it has been called.
 The predicate matches the <var>n</var>'th time it is called
@@ -512,8 +512,8 @@ a <code>(test-runner-gui)</code>.</p>
 Create a new test-runner.  Equivalent to
 <code>((test-runner-factory))</code>.</p>
 <p>
-<code>(<b>test-runner-factory</b>)</code><br/>
-<code>(<b>test-runner-factory</b> <var>factory</var>)</code><br/>
+<code>(<b>test-runner-factory</b>)</code><br />
+<code>(<b>test-runner-factory</b> <var>factory</var>)</code><br />
 Get or set the current test-runner factory.
 A factory is a zero-argument function that creates a new test-runner.
 The default value is <code>test-runner-simple</code>,
@@ -556,7 +556,7 @@ status symbols:</p>
 <dt><code>'skip</code></dt><dd>The test was skipped.</dd>
 </dl>
 <p>
-<code>(<b>test-result-kind</b> [<var>runner</var>])</code><br/>
+<code>(<b>test-result-kind</b> [<var>runner</var>])</code><br />
 Return one of the above result codes from the most recent tests.
 Returns <code>#f</code> if no tests have been run yet.
 If we've started on a new test, but don't have a result yet,
@@ -564,7 +564,7 @@ then the result kind is <code>'xfail</code> is the test is expected to fail,
 <code>'skip</code> is the test is supposed to be skipped,
 or <code>#f</code> otherwise.</p>
 <p>
-<code>(<b>test-passed?</b> [<var>runner</var>])</code><br/>
+<code>(<b>test-passed?</b> [<var>runner</var>])</code><br />
 True if the value of <code>(test-result-kind [<var>runner</var>])</code>
 is one of <code>'pass</code> or <code>'xpass</code>.
 This is a convenient shorthand that might be useful
@@ -599,7 +599,7 @@ Remove all result properties.
 The implementation automatically calls <code>test-result-clear</code>
 at the start of a <code>test-assert</code> and similar procedures.</p>
 <p>
-<code>(<b>test-result-alist</b> <var>runner</var>)</code><br/>
+<code>(<b>test-result-alist</b> <var>runner</var>)</code><br />
 Returns an association list of the current result properties.
 It is unspecified if the result shares state with the test-runner.
 The result should not be modified, on the other hand the result
@@ -615,8 +615,8 @@ However, it is suggested that the following might be provided:</p>
 <dl>
 <dt><code>'result-kind</code></dt>
 <dd>The result kind, as defined previously.
-This is the only mandatory result property.<br/>
-<code>(test-result-kind <var>runner</var>)</code> is equivalent to:<br/>
+This is the only mandatory result property.<br />
+<code>(test-result-kind <var>runner</var>)</code> is equivalent to:<br />
 <code>(test-result-ref  <var>runner</var> 'result-kind)</code>
 </dd>
 <dt><code>'source-file</code></dt>
@@ -650,7 +650,7 @@ is called by the implementation when <var>event</var> happens.</p>
 <p>
 To define (set) the callback function for <var>event</var> use the following expression.
 (This is normally done when initializing a test-runner.)
-<br/>
+<br />
 <code>(test-runner-on-<var>event</var>! <var>runner</var> <var>event-function</var>)</code></p>
 <p>
 An <var>event-function</var> takes a test-runner argument, and possibly other arguments, depending on the <var>event</var>.</p>
@@ -659,42 +659,42 @@ To extract (get) the callback function for <var>event</var> do this:<br />
 <code>(test-runner-on-<var>event</var> <var>runner</var>)</code></p>
 <p>
 To extract call the callback function for <var>event</var> use the following expression.
-(This is normally done by the implementation core.)<br/>
+(This is normally done by the implementation core.)<br />
 <code>((test-runner-on-<var>event</var> <var>runner</var>) <var>runner</var> <var>other-args</var> ...)</code></p>
 <p>
 The following call-back hooks are available.</p>
 <p>
-<code>(<b>test-runner-on-test-begin</b> <var>runner</var>)</code><br/>
-<code>(<b>test-runner-on-test-begin!</b> <var>runner</var> <var>on-test-begin-function</var>)</code><br/>
+<code>(<b>test-runner-on-test-begin</b> <var>runner</var>)</code><br />
+<code>(<b>test-runner-on-test-begin!</b> <var>runner</var> <var>on-test-begin-function</var>)</code><br />
 <code>(<var>on-test-begin-function</var> <var>runner</var>)</code><br />
 The <var>on-test-begin-function</var> is called at the start of an
 individual testcase, before the test expression (and expected value) are
 evaluated.
 </p>
 <p>
-<code>(<b>test-runner-on-test-end</b> <var>runner</var>)</code><br/>
-<code>(<b>test-runner-on-test-end!</b> <var>runner</var> <var>on-test-end-function</var>)</code><br/>
+<code>(<b>test-runner-on-test-end</b> <var>runner</var>)</code><br />
+<code>(<b>test-runner-on-test-end!</b> <var>runner</var> <var>on-test-end-function</var>)</code><br />
 <code>(<var>on-test-end-function</var> <var>runner</var>)</code><br />
 The <var>on-test-end-function</var> is called at the end of an
 individual testcase, when the result of the test is available.</p>
 <p>
-<code>(<b>test-runner-on-group-begin</b> <var>runner</var>)</code><br/>
-<code>(<b>test-runner-on-group-begin!</b> <var>runner</var> <var>on-group-begin-function</var>)</code><br/>
+<code>(<b>test-runner-on-group-begin</b> <var>runner</var>)</code><br />
+<code>(<b>test-runner-on-group-begin!</b> <var>runner</var> <var>on-group-begin-function</var>)</code><br />
 <code>(<var>on-group-begin-function</var> <var>runner</var> <var>suite-name</var> <var>count</var>)</code><br />
 The <var>on-group-begin-function</var> is called by a <code>test-begin</code>,
 including at the start of a <code>test-group</code>.
 The <var>suite-name</var> is a Scheme string,
 and <var>count</var> is an integer or <code>#f</code>.</p>
 <p>
-<code>(<b>test-runner-on-group-end</b> <var>runner</var>)</code><br/>
-<code>(<b>test-runner-on-group-end!</b> <var>runner</var> <var>on-group-end-function</var>)</code><br/>
+<code>(<b>test-runner-on-group-end</b> <var>runner</var>)</code><br />
+<code>(<b>test-runner-on-group-end!</b> <var>runner</var> <var>on-group-end-function</var>)</code><br />
 <code>(<var>on-group-end-function</var> <var>runner</var>)</code><br />
 The <var>on-group-end-function</var> is called by a <code>test-end</code>,
 including at the end of a <code>test-group</code>.</p>
 <p>
 <code>(<b>test-runner-on-bad-count</b> <var>runner</var>)</code><br />
 <code>(<b>test-runner-on-bad-count!</b> <var>runner</var> <var>on-bad-count-function</var>)</code><br />
-<code>(<var>on-bad-count-function</var> <var>runner</var> <var>actual-count</var> <var>expected-count</var>)</code><br  />
+<code>(<var>on-bad-count-function</var> <var>runner</var> <var>actual-count</var> <var>expected-count</var>)</code><br />
 Called from <code>test-end</code> (before the <var>on-group-end-function</var>
 is called) if an <var>expected-count</var> was specified by the matching
 <code>test-begin</code> and the <var>expected-count</var> does not match
@@ -702,14 +702,14 @@ the <var>actual-count</var> of tests actually executed or skipped.</p>
 <p>
 <code>(<b>test-runner-on-bad-end-name</b> <var>runner</var>)</code><br />
 <code>(<b>test-runner-on-bad-end-name!</b> <var>runner</var> <var>on-bad-end-name-function</var>)</code><br />
-<code>(<var>on-bad-end-name-function</var> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br  />
+<code>(<var>on-bad-end-name-function</var> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br />
 Called from <code>test-end</code> (before the <var>on-group-end-function</var>
 is called) if a <var>suite-name</var> was specified, and it did not that the
 name in the matching <code>test-begin</code>.</p>
 <p>
 <code>(<b>test-runner-on-final</b> <var>runner</var>)</code><br />
 <code>(<b>test-runner-on-final!</b> <var>runner</var> <var>on-final-function</var>)</code><br />
-<code>(<var>on-final-function</var> <var>runner</var>)</code><br  />
+<code>(<var>on-final-function</var> <var>runner</var>)</code><br />
 The <var>on-final-function</var> takes one parameter (a test-runner)
 and typically displays a summary (count) of the tests.
 The <var>on-final-function</var> is called after called the
@@ -725,8 +725,8 @@ uses the following call-back functions:<br />
 <code>(<b>test-on-test-end-simple</b> <var>runner</var>)</code><br />
 <code>(<b>test-on-group-begin-simple</b> <var>runner</var> <var>suite-name</var> <var>count</var>)</code><br />
 <code>(<b>test-on-group-end-simple</b> <var>runner</var>)</code><br />
-<code>(<b>test-on-bad-count-simple</b> <var>runner</var> <var>actual-count</var> <var>expected-count</var>)</code><br  />
-<code>(<b>test-on-bad-end-name-simple</b> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br  />
+<code>(<b>test-on-bad-count-simple</b> <var>runner</var> <var>actual-count</var> <var>expected-count</var>)</code><br />
+<code>(<b>test-on-bad-end-name-simple</b> <var>runner</var> <var>begin-name</var> <var>end-name</var>)</code><br />
 You can call those if you want to write your own test-runner.</p>
 
 <h4>Test-runner components</h4>
