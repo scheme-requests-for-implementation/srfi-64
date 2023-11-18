@@ -37,7 +37,7 @@
 This defines an API for writing <dfn>test suites</dfn>, to make it easy
 to portably test Scheme APIs, libraries, applications, and implementations.
 A test suite is a collection of <dfn>test cases</dfn> that execute
-in the context of a <dfn>test-runner</dfn>.  This specifications
+in the context of a <dfn>test-runner</dfn>.  This specification
 also supports writing new test-runners, to allow customization
 of reporting and processing the result of running test suites.</p>
 
@@ -171,7 +171,7 @@ Here is a simple example:</p>
 <p>For testing approximate equality of inexact reals
 we can use <code>test-approximate</code>:</p>
 <pre>
-(<b>test-approximate</b> [test-name] expected test-expr error)
+(<b>test-approximate</b> [<var>test-name</var>] <var>expected</var> <var>test-expr</var> <var>error</var>)
 </pre>
 <p>
 This is equivalent to (except that each argument is only evaluated once):</p>
@@ -273,7 +273,7 @@ The <dfn>test group path</dfn> is a list of the currently-active
 <p>A <code>test-begin</code> enters a new test group.
 The <var>suite-name</var> becomes the current test group name,
 and is added to the end of the test group path.
-Portable test suites should use a sting literal for <var>suite-name</var>;
+Portable test suites should use a string literal for <var>suite-name</var>;
 the effect of expressions or other kinds of literals is unspecified.</p>
 <p>
 <b>Rationale:</b> In some ways using symbols would be preferable.
@@ -302,7 +302,7 @@ name in the test group path, intervening groups are left.
 <p>
 Additionally, if the matching <code>test-begin</code>
 installed a new test-runner, then the <code>test-end</code>
-will de-install it, after reporting the accumulated test
+will uninstall it, after reporting the accumulated test
 results in an implementation-defined manner.</p>
 
 <pre>
@@ -370,7 +370,7 @@ You can run previously registered test suite:
 <h3>Conditonal test-suites and other advanced features</h3>
 <p>
 The following describes features for controlling which tests to execute,
-or specifing that some tests are <em>expected</em> to fail.</p>
+or specifying that some tests are <em>expected</em> to fail.</p>
 
 <h4>Test specifiers</h4>
 <p>Sometimes we want to only run certain tests, or we know that
@@ -390,7 +390,7 @@ A simple example is:</p>
 <p>
 <code>(<b>test-match-name</b> <var>name</var>)</code><br />
 The resulting specifier matches if the current test name (as
-returned by <code>test-runner-test-name</code>) is <code>equals?</code> to
+returned by <code>test-runner-test-name</code>) is <code>equal?</code> to
 <var>name</var>.</p>
 <p>
 <code>(<b>test-match-nth</b> <var>n</var> [<var>count</var>])</code><br />
@@ -478,7 +478,7 @@ not test execution.  For example:</p>
 A <dfn>test-runner</dfn> is an object that runs a test-suite,
 and manages the state.  The test group path, and the sets skip and
 expected-fail specifiers are part of the test-runner.
-A test-runner will also typically accumulate statistics about executed tests,
+A test-runner will also typically accumulate statistics about executed tests.
 </p>
 <p>
 <code>(<b>test-runner?</b> <var>value</var>)</code><br />
@@ -495,7 +495,7 @@ as a macro or function
 that uses a fluid or thread-local variable, or a plain global variable.</p>
 <p>
 <code>(<b>test-runner-get</b>)</code><br />
-Same as <code>(test-runner-current)</code>, buth throws an exception
+Same as <code>(test-runner-current)</code>, but throws an exception
 if there is no current test-runner.</p>
 <p>
 <code>(<b>test-runner-simple</b>)</code><br />
@@ -536,7 +536,7 @@ if it matches any of the <var>specifier</var>s in the
 <code>test-apply</code> <em>and</em> does not match any
 active <code>test-skip</code> specifiers.</p>
 <p>
-<code>(<b>test-with-runner </b><var>runner</var> <var>decl-or-expr</var> ...)</code><br />
+<code>(<b>test-with-runner</b><var>runner</var> <var>decl-or-expr</var> ...)</code><br />
 Executes each <var>decl-or-expr</var> in order in a context
 where the current test-runner is <var>runner</var>.</p>
 
@@ -557,11 +557,11 @@ status symbols:</p>
 </dl>
 <p>
 <code>(<b>test-result-kind</b> [<var>runner</var>])</code><br />
-Return one of the above result codes from the most recent tests.
+Returns one of the above result codes from the most recent tests.
 Returns <code>#f</code> if no tests have been run yet.
 If we've started on a new test, but don't have a result yet,
-then the result kind is <code>'xfail</code> is the test is expected to fail,
-<code>'skip</code> is the test is supposed to be skipped,
+then the result kind is <code>'xfail</code> if the test is expected to fail,
+<code>'skip</code> if the test is supposed to be skipped,
 or <code>#f</code> otherwise.</p>
 <p>
 <code>(<b>test-passed?</b> [<var>runner</var>])</code><br />
@@ -602,7 +602,7 @@ at the start of a <code>test-assert</code> and similar procedures.</p>
 <code>(<b>test-result-alist</b> <var>runner</var>)</code><br />
 Returns an association list of the current result properties.
 It is unspecified if the result shares state with the test-runner.
-The result should not be modified, on the other hand the result
+The result should not be modified; on the other hand, the result
 may be implicitly modified by future <code>test-result-set!</code> or
 <code>test-result-remove</code> calls.
 However, a <code>test-result-clear</code> does not modify the returned
@@ -622,7 +622,7 @@ This is the only mandatory result property.<br />
 <dt><code>'source-file</code></dt>
 <dt><code>'source-line</code></dt>
 <dd>If known, the location of test statements (such as <code>test-assert</code>)
-in test suite source code..</dd>
+in test suite source code.</dd>
 <dt><code>'source-form</code></dt>
 <dd>The source form, if meaningful and known.</dd>
 <dt><code>'expected-value</code></dt>
