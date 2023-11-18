@@ -302,7 +302,7 @@ name in the test group path, intervening groups are left.
 <p>
 Additionally, if the matching <code>test-begin</code>
 installed a new test-runner, then the <code>test-end</code>
-will de-install it, after reporting the accumulated test
+will uninstall it, after reporting the accumulated test
 results in an implementation-defined manner.</p>
 
 <pre>
@@ -602,7 +602,7 @@ at the start of a <code>test-assert</code> and similar procedures.</p>
 <code>(<b>test-result-alist</b> <var>runner</var>)</code><br />
 Returns an association list of the current result properties.
 It is unspecified if the result shares state with the test-runner.
-The result should not be modified, on the other hand the result
+The result should not be modified; on the other hand, the result
 may be implicitly modified by future <code>test-result-set!</code> or
 <code>test-result-remove</code> calls.
 However, a <code>test-result-clear</code> does not modify the returned
