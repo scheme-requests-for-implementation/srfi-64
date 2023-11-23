@@ -51,13 +51,13 @@ or "runner" need not be portable, but it is desirable that it be
 possible to write a portable basic implementation.</p>
 <p>
 There are other testing frameworks written in Scheme, including
-<a href="http://schematics.sourceforge.net/schemeunit.html">SchemeUnit</a>.
-However SchemeUnit is not portable.
+<a href="https://docs.racket-lang.org/rackunit/">RackUnit</a>.
+However RackUnit is not portable.
 It is also a bit on the verbose side.
-It would be useful to have a bridge between this framework and SchemeUnit
-so SchemeUnit tests could run under this framework and vice versa.
+It would be useful to have a bridge between this framework and RackUnit
+so RackUnit tests could run under this framework and vice versa.
 There exists also at least one Scheme wrapper providing a Scheme interface
-to the <q>standard</q> <a href="http://www.junit.org/">JUnit</a> API for Java.
+to the <q>standard</q> <a href="https://www.junit.org/">JUnit</a> API for Java.
 It would be useful to have a bridge so that tests written using this
 framework can run under a JUnit runner.
 Neither of these features are part of this specification.</p>
