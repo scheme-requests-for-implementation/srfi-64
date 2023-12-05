@@ -1,3 +1,7 @@
+;;; SPDX-FileCopyrightText: 2015 Taylan Kammer <taylan.kammer@gmail.com>
+;;;
+;;; SPDX-License-Identifier: MIT
+
 (export
  test-runner-simple
  ;; The following are exported so you can leverage their existing functionality

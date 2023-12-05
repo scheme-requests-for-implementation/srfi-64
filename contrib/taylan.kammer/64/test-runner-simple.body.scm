@@ -1,3 +1,5 @@
+;;; SPDX-License-Identifier: MIT
+
 ;; Copyright (c) 2005, 2006, 2007, 2012, 2013 Per Bothner
 ;; Added "full" support for Chicken, Gauche, Guile and SISC.
 ;;   Alex Shinn, Copyright (c) 2005.

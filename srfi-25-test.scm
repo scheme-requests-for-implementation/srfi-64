@@ -1,3 +1,7 @@
+;;; SPDX-FileCopyrightText: 2005 - 2006 Per Bothner
+;;;
+;;; SPDX-License-Identifier: MIT
+
 (test-begin "arrays" 169)
 
 ;;; array test

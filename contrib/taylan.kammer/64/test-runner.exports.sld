@@ -1,3 +1,7 @@
+;;; SPDX-FileCopyrightText: 2015 Taylan Kammer <taylan.kammer@gmail.com>
+;;;
+;;; SPDX-License-Identifier: MIT
+
 (export
  ;; The data type
  test-runner-null test-runner? test-runner-reset

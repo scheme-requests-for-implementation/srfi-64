@@ -1,3 +1,7 @@
+;;; SPDX-FileCopyrightText: 2005 - 2006 Per Bothner
+;;;
+;;; SPDX-License-Identifier: MIT
+
 ;;;
 ;;;  This is a test suite written in the notation of 
 ;;;  SRFI-64, A Scheme API for test suites
