@@ -382,9 +382,7 @@
      (let* ((port (open-input-string string))
             (form (read port)))
        (if (eof-object? (read-char port))
-           (if env
-               (eval form env)
-               (eval form))
+           (eval form env)
            (error "(not at eof)"))))))
 
 
