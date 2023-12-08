@@ -12,5 +12,8 @@
    (srfi 64 source-info)
    (srfi 64 test-runner)
    (srfi 64 test-runner-simple))
+  (cond-expand
+   (guile
+    (import (only (guile) current-module))))
   (include-library-declarations "execution.exports.sld")
   (include "execution.body.scm"))
