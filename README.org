@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2005 - 2006 Per Bothner
+#
+# SPDX-License-Identifier: MIT
+
 * SRFI 64: A Scheme API for test suites
 
 ** by Per Bothner

@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: SRFI 64
+Upstream-Contact: Arthur A. Gleckler <srfi-editors@srfi.schemers.org>
+Source: https://github.com/scheme-requests-for-implementation/srfi-64
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
