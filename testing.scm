@@ -474,7 +474,10 @@
 (define-syntax test-group
   (syntax-rules ()
     ((test-group suite-name . body)
-     (let ((r (test-runner-current)))
+     (let ((r (or (test-runner-current)
+                  (begin
+                   (test-runner-current (test-runner-create))
+                   (test-runner-current)))))
        ;; Ideally should also set line-number, if available.
        (test-result-alist! r (list (cons 'test-name suite-name)))
        (if (%test-should-execute r)
