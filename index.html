@@ -1,86 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>A Scheme API for test suites</title>
-    <link href="/admin.css" rel="stylesheet">
-    <link href="/list.css" rel="stylesheet">
-    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-     });
-    </script>
-    <script crossorigin="anonymous" integrity=
-            "sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv" src=
-            "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-            type="text/javascript"></script>
-  </head>
-
-  <body>
-    <h1>SRFI 64: A Scheme API for test suites</h1>
-    <p class="authors">by Per Bothner</p>
-    <p class="based-on"></p>
-    <p class="status">status: <em>final</em> (2006-06-18)</p>
-    <p class="keywords">keywords: <a href="https://srfi.schemers.org/?keywords=testing">Testing</a></p>
-    <p class="library-name">library name: testing</p>
-
-    <ul class="info">
-      <li><a href="srfi-64.html">The SRFI Document</a></li>
-      <li><a href="https://srfi-email.schemers.org/srfi-64/">Discussion Archive</a></li>
-      <li><a href="https://github.com/scheme-requests-for-implementation/srfi-64">Git repo (on Github)</a></li>
-      <li>
-        <a href="mailto:srfi-64@srfi.schemers.org">srfi-64@<span class="antispam">nospam</span>srfi.schemers.org (subscribers only)</a></li>
-      <li>
-        <span class="firefox-column-workaround">
-          <form method="POST" action="https://www.simplelists.com/subscribe.php">
-            <div class="title">Subscribe to srfi-64 mailing list</div>
-            <input name="email"
-                   placeholder="email address"
-                   tabindex="1"
-                   type="email" >
-            <input name="name"
-                   placeholder="full name"
-                   tabindex="2"
-                   type="text" >
-            <p>
-              <input id="sub-digest"
-                     name="digest"
-                     tabindex="3"
-                     type="checkbox"
-                     value="digest" >
-              <label for="sub-digest">daily digest?</label></p>
-            <input class="submit"
-                   name="submit"
-                   tabindex="4"
-                   type="submit"
-                   value="Subscribe to srfi-64" >
-            <input type="hidden" name="action" value="subscribe">
-            <input type="hidden" name="list" value="srfi-64@srfi.schemers.org"></form></a></li>
-      <li>
-        <span class="firefox-column-workaround">
-          <form method="POST" action="https://www.simplelists.com/subscribe.php">
-            <p class="title">Unsubscribe from srfi-64 mailing list</p>
-            <input name="email"
-                   placeholder="email address"
-                   tabindex="5"
-                   type="email" >
-            <input class="submit"
-                   name="submit"
-                   tabindex="6"
-                   type="submit"
-                   value="Unsubscribe from srfi-64" >
-            <input name="action"
-                   type="hidden"
-                   value="unsubscribe" >
-            <input name="list"
-                   type="hidden"
-                   value="srfi-64@srfi.schemers.org"></form></a></li></ul>
-    <h2>Abstract</h2>      <p>This defines an API for writing <dfn>test
-      suites</dfn>, to make it easy to portably test Scheme APIs, libraries,
-      applications, and implementations. A test suite is a collection of
-      <dfn>test cases</dfn> that execute in the context of a
-      <dfn>test-runner</dfn>. This specifications also supports writing new
-      test-runners, to allow customization of reporting and processing the
-      result of running test suites.</body></html>
+    <head>
+      <!-- SPDX-FileCopyrightText: 2024 Per Bothner -->
+      <!-- SPDX-License-Identifier: MIT -->
+      <title>A Scheme API for test suites</title>
+      <link href="/admin.css" rel="stylesheet">
+      <link href="/list.css" rel="stylesheet">
+      <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+      <script crossorigin="anonymous" integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head>
+    <body>
+      <h1>SRFI 64: A Scheme API for test suites</h1>
+      <p class="authors">by Per Bothner</p>
+      <p class="based-on"></p>
+      <p class="status">status: <em>final</em> (2006-06-18)</p>
+      <p class="keywords">keywords: <a href="https://srfi.schemers.org/?keywords=testing">Testing</a></p><span class="see-also">See also <a href="/srfi-252/">SRFI 252: Property Testing</a>.</span>
+      <p class="library-name">library name: testing</p>
+      <ul class="info">
+        <li><a href="srfi-64.html">The SRFI Document</a></li>
+        <li><a href="https://srfi-email.schemers.org/srfi-64/">Discussion Archive</a></li>
+        <li><a href="https://github.com/scheme-requests-for-implementation/srfi-64">Git repo (on GitHub)</a></li>
+        <li><a href="mailto:srfi-64@srfi.schemers.org">srfi-64@<span class="antispam">nospam</span>srfi.schemers.org (subscribers only)</a></li>
+        <li><span class="firefox-column-workaround">
+            <form method="POST" action="https://www.simplelists.com/subscribe.php">
+              <div class="title">Subscribe to srfi-64 mailing list</div><input name="email" placeholder="email address" tabindex="1" type="email"><input name="name" placeholder="full name" tabindex="2" type="text">
+              <p><input id="sub-digest" name="digest" tabindex="3" type="checkbox" value="digest"><label for="sub-digest">daily digest?</label></p><input class="submit" name="submit" tabindex="4" type="submit" value="Subscribe to srfi-64"><input type="hidden" name="action" value="subscribe"><input type="hidden" name="list" value="srfi-64@srfi.schemers.org"></form></span></li>
+        <li><span class="firefox-column-workaround">
+            <form method="POST" action="https://www.simplelists.com/subscribe.php">
+              <div class="title">Unsubscribe from srfi-64 mailing list</div><input name="email" placeholder="email address" tabindex="5" type="email"><input class="submit" name="submit" tabindex="6" type="submit" value="Unsubscribe from srfi-64"><input type="hidden" name="action" value="unsubscribe"><input name="list" type="hidden" value="srfi-64@srfi.schemers.org"></form></span></li></ul>
+      <h2>Abstract</h2>      <p>This defines an API for writing <dfn>test       suites</dfn>, to make it easy to portably test Scheme APIs, libraries,       applications, and implementations. A test suite is a collection of       <dfn>test cases</dfn> that execute in the context of a       <dfn>test-runner</dfn>. This specifications also supports writing new       test-runners, to allow customization of reporting and processing the       result of running test suites.</body></html>
