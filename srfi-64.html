@@ -114,7 +114,7 @@ It is also easy to add new tests, without having to name individual
 tests (though that is optional).</p>
 <p>
 Test cases are executed in the context of a <dfn>test runner</dfn>,
-which is a object that accumulates and reports test results.
+which is an object that accumulates and reports test results.
 This specification defines how to create and use custom test runners,
 but implementations should also provide a default test runner.
 It is suggested (but not required) that loading the above
@@ -376,7 +376,7 @@ or specifying that some tests are <em>expected</em> to fail.</p>
 <h4>Test specifiers</h4>
 <p>Sometimes we want to only run certain tests, or we know that
 certain tests are expected to fail.
-A <dfn>test specifier</dfn> is one-argument function that takes a test-runner
+A <dfn>test specifier</dfn> is a one-argument function that takes a test-runner
 and returns a boolean.  The specifier may be run before a test is performed,
 and the result may control whether the test is executed.
 For convenience, a specifier may also be a non-procedure value,
