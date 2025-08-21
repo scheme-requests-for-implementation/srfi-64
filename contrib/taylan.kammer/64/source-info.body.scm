@@ -1,3 +1,5 @@
+;;; SPDX-License-Identifier: MIT
+
 ;; Copyright (c) 2015 Taylan Ulrich Bayırlı/Kammer <taylanbayirli@gmail.com>
 ;;
 ;; Permission is hereby granted, free of charge, to any person

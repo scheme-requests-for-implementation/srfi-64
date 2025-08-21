@@ -1,3 +1,7 @@
+;;; SPDX-FileCopyrightText: 2015 Taylan Kammer <taylan.kammer@gmail.com>
+;;;
+;;; SPDX-License-Identifier: MIT
+
 (export
  test-begin test-end test-group test-group-with-cleanup
 
