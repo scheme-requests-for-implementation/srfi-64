@@ -113,7 +113,7 @@
  test-on-final-simple)
 
 (cond-expand
- (srfi-9
+ ((or srfi-9 r7rs)
   (define-syntax %test-record-define
     (syntax-rules ()
       ((%test-record-define tname alloc runner? (name index getter setter) ...)
@@ -633,7 +633,7 @@
 		  (ex <java.lang.Throwable>
 		      (test-result-set! (test-runner-current) 'actual-error ex)
 		      #f))))))
- (srfi-34
+ ((or srfi-34 r7rs)
   (define-syntax %test-evaluate-with-catch
     (syntax-rules ()
       ((%test-evaluate-with-catch test-expression)
@@ -918,7 +918,7 @@
 		   #t)
 		  (else #t))
 	      expr #f))))))
- (srfi-34
+ ((or srfi-34 r7rs)
   (define-syntax %test-error
     (syntax-rules ()
       ((%test-error r etype expr)
